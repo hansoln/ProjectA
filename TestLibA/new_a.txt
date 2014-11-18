@@ -10,3 +10,4 @@ MASSE NYTT HER OPPE
 "After TestLibA renamed this file"
 "New feature"
 "Yet another commonly needed update"
+"RENAMED!!!!"
