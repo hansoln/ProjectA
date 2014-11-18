@@ -7,5 +7,6 @@ MASSE NYTT HER OPPE
 "Fra super"
 "Jens er best!"
 "Common update needed by all parent projects"
+"After TestLibA renamed this file"
 "New feature"
 "Yet another commonly needed update"
