@@ -1,0 +1,13 @@
+123 567 HANS OLAV FRA TEST
+
+JENS JENS
+Also included in TestLibA
+
+ADDED FROM TEST LIB A
+
+MORE INSERTED FROM TEST LIB A
+ADDED FROM PROJECT
+
+
+New line in remote repo
+New line from project
