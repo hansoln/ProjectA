@@ -1,3 +1,4 @@
+New line here
 123 567 HANS OLAV FRA TEST
 
 JENS JENS
@@ -7,7 +8,6 @@ ADDED FROM TEST LIB A
 
 MORE INSERTED FROM TEST LIB A
 ADDED FROM PROJECT
-
-
+New line
 New line in remote repo
 New line from project
