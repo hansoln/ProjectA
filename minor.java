@@ -1,4 +1,4 @@
-public static main(String[] args) {
+hejpublic static main(String[] args) {
 
 
 ompa
