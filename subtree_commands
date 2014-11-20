@@ -1,0 +1,27 @@
+commit_work() {
+
+INPUT=.subtrees
+OLDIFS=$IFS
+SUBTREES=()
+IFS=,
+[ ! -f $INPUT ] && { echo "$INPUT file not found in the folder"; exit 99; }
+
+# Get the subtree location from the .subtrees file.
+while read tree local url 
+do
+        SUBTREES+=($local)
+done < $INPUT
+
+IFS=$OLDIFS
+
+# Loop through each subtree and first add files and then commit them. You will be prompted to write a commit message for each subtree.
+for i in "${SUBTREES[@]}"
+do
+        git add --all $i
+        git commit
+done
+
+# Finally add everything that's outside of the subtrees.
+git add .
+git commit
+}
