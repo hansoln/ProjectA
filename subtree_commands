@@ -1,12 +1,12 @@
 #!/bin/bash
 
 subtree() {
+	if [ "$#" -ne 2 ]
+	then
+  		echo "Usage: subtree [add|pull|push] [Relative/path/to/subtree]"
+  		return 1;
+	fi
 	git subtree $1 --prefix $2 $2 master
-}
-
-
-__subtree_pull_push() {
-	git subtree pull --prefix $1 $1 master
 }
 
 commit_work() {
@@ -15,7 +15,7 @@ INPUT=.subtrees
 OLDIFS=$IFS
 SUBTREES=()
 IFS=,
-[ ! -f $INPUT ] && { echo "$INPUT file not found in the folder"; exit 99; }
+[ ! -f $INPUT ] && { echo "$INPUT file not found in the folder"; return 1; }
 
 # Get the subtree location from the .subtrees file.
 while read tree local url 
