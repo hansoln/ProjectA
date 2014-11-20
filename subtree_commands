@@ -1,4 +1,14 @@
-commit_work() {
+#!/bin/bash
+
+subtree() {
+	$1
+}
+
+subtree-pull() {
+
+}
+
+__commit_work() {
 
 INPUT=.subtrees
 OLDIFS=$IFS
