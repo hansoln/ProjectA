@@ -1,0 +1,26 @@
+
+asd BBBBBBB
+
+
+AAA
+
+New line here
+BBBB 123 567 HANS OLAV FRA TEST
+
+AAAAAAAAAAA
+
+JENS JENS
+Also included in TestLibA
+
+
+=======
+AAAAAAAAA   ADDED FROM TEST LIB A
+
+AAAAAAAA
+
+MORE INSERTED FROM TEST LIB A
+ADDED FROM PROJECT
+New line
+New line in remote repo
+
+
