@@ -19,10 +19,6 @@ function subtree() {
 	index=1
 	for i in "${TREES[@]}"
 	do
-		echo "i: $i"
-		#echo $index
-		#echo $TREES[index]      
-		echo "tree: $tree"
 		if [ "$i" = "$tree" ]; then
 			local=$LOCALS[$index]
 			echo "set local: $local"
@@ -60,17 +56,19 @@ function __get_sub_trees() {
 }
 
 function commit_work() {
+	# Unstage files if there are any, For example they could have been auto-added on "git rm".
+	git reset HEAD
 
-__get_sub_trees
+	__get_sub_trees
 
-# Loop through each subtree and first add files and then commit them. You will be prompted to write a commit message for each subtree.
-for i in "${LOCALS[@]}"
-do
-        git add --all $i
-        git commit
-done
+	# Loop through each subtree and first add files and then commit them. You will be prompted to write a commit message for each subtree.
+	for i in "${LOCALS[@]}"
+	do
+        	git add --all $i
+        	git commit
+	done
 
-# Finally add everything that's outside of the subtrees.
-git add .
-git commit
+	# Finally add everything that's outside of the subtrees.
+	git add .
+	git commit
 }
