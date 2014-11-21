@@ -1,28 +1,3 @@
-
-
-asd BBBBBBB
-
-
-AAA
-
-
-AAA
-
-New line here
-BBBB 123 567 HANS OLAV FRA TEST
-
-AAAAAAAAAAA
-
-AAAAAAAAAAA
-
-JENS JENS
-Also included in TestLibA
-
-
-
-
-
-
 AAAAAAAAA   ADDED FROM TEST LIB A
 
 AAAAAAAA
