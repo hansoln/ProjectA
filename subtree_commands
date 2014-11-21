@@ -75,7 +75,7 @@ function commit_work() {
 	done
 
 	# Finally add everything that's outside of the subtrees.
-	git add .
+	git add --all
 	git commit
 
         # Unstage files if the user aborts a commit.
