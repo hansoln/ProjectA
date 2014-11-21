@@ -1,38 +1,38 @@
 #!/bin/bash
 
 function subtree() {
-	
-	# Set global sub tree variable
-	__get_sub_trees
-
-	command=$1
-	tree=$2
-
 	if [ "$#" -ne 2 ]
 	then
   		echo "Usage: subtree [add|pull|push] [Relative/path/to/subtree]"
   		return 1
 	fi
+	
+	command=$1
+	subtree=$2
 
-	#local="TestLibA"
+	# Set global sub tree variable
+	__get_sub_trees success
+
+	if [ $success -eq 0 ]; then
+		return 1
+	fi
 
 	index=1
 	for i in "${TREES[@]}"
 	do
-		if [ "$i" = "$tree" ]; then
+		if [ "$i" = "$subtree" ]; then
 			local=$LOCALS[$index]
-			echo "set local: $local"
 			break;
 		fi
 		index=$(expr $index + 1)
 	done
 
 	if [ -z $local ]; then
-		echo "Subtree with name $tree not found in .subtrees"
+		echo "Subtree with name $subtree not found in .subtrees"
 		return 1
 	fi
 
-	git subtree $command --prefix $tree $local master
+	git subtree $command --prefix $subtree $local master
 }
 
 function __get_sub_trees() {
@@ -42,7 +42,7 @@ function __get_sub_trees() {
 	LOCALS=()
 	URLS=()
 	IFS=,
-	[ ! -f $INPUT ] && { echo "$INPUT file not found in the folder"; return 1; }
+	[ ! -f $INPUT ] && { echo "The $INPUT file could not be found. Are you in the correct directory?"; eval $1=0; return 1; }
 
 	# Get the subtree location from the .subtrees file.
 	while read tree local url
@@ -53,13 +53,19 @@ function __get_sub_trees() {
 	done < $INPUT
 
 	IFS=$OLDIFS
+	eval $1=1
 }
 
 function commit_work() {
+        # Set global sub tree variable
+        __get_sub_trees success
+        
+        if [ $success -eq 0 ]; then
+                return 1
+        fi
+
 	# Unstage files if there are any, For example they could have been auto-added on "git rm".
 	git reset HEAD
-
-	__get_sub_trees
 
 	# Loop through each subtree and first add files and then commit them. You will be prompted to write a commit message for each subtree.
 	for i in "${LOCALS[@]}"
@@ -71,4 +77,8 @@ function commit_work() {
 	# Finally add everything that's outside of the subtrees.
 	git add .
 	git commit
+
+        # Unstage files if the user aborts a commit.
+        git reset HEAD
+
 }
